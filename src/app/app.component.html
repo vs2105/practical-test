@@ -1,0 +1,69 @@
+<mat-toolbar >
+ 
+  <span>Bill To Party Master</span>
+  <span class="example-spacer"></span>
+
+ <div class="searchbar">
+  <input type="text" placeholder="Search Name" [(ngModel)]="searchbyname" class="form-control">
+ </div>
+      <mat-icon color="primary" (click)="onaddUser()">add</mat-icon>  
+</mat-toolbar>
+
+<div class="row mt-4"></div>
+
+<div class="container-fluid">
+  <div class="row mt-4">
+   <div class="col-sm-12">
+    <div class="table-responsive">
+      <table class="table table-bordered  table-hover ">
+         <thead>
+             <tr>
+                <th>Action</th>
+                <th>Client</th>
+                <th>Code</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Country</th>
+                <th>State</th>
+                <th>City</th>
+                <th>Mobile No</th>
+                <th>Email</th>
+                <th>GST No</th>
+                <th>PAN No</th>
+             </tr>
+         </thead>
+         <tbody>
+          <tr *ngFor="let user of usersArr | filterbyname:searchbyname">
+            <td class="d-flex">
+              <mat-icon (click)="onEdituser(user.id)">edit</mat-icon>
+              <mat-icon color="warn" (click)="onDeleteUser(user.id)" >delete</mat-icon>
+            </td>
+            <td>{{user.CompanyName}}</td>
+            <td>{{user.Code}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.Address}}</td>
+            <td>{{user.country}}</td>
+            <td>{{user.state}}</td>
+            <td>{{user.city}}</td>
+            <td>{{user.mobile}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.GSTNo}}</td>
+            <td>{{user.PANNo}}</td>
+          </tr>
+         </tbody>
+      </table>
+    </div>
+   </div>
+  </div>
+</div>
+ 
+ <div class="loader" *ngIf="loadingstatus">
+  <div class="spinner-border text-primary" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+ </div>
+  <!-- <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                 showFirstLastButtons
+                 aria-label="Select page of periodic elements">
+  </mat-paginator> -->
+
